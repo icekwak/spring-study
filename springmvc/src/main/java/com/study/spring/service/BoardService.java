@@ -9,4 +9,6 @@ public interface BoardService {
 	public List<BoardVO> getList();
 	
 	public BoardVO detail(int id);
+
+	public void insert(BoardVO boardVO);
 }

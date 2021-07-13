@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.spring.mapper.boardMapper">
+
+    <select id="getList" resultType="com.study.spring.entity.BoardVO">
+    	SELECT * FROM board
+    </select>
+    
+    <select id="detail" parameterType="int" resultType="BoardVO">
+    	SELECT * FROM board WHERE board_id = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="BoardVO">
+    	INSERT INTO board(board_title, board_writer, board_content)
+    	VALUES (#{board_title}, #{board_writer}, #{board_content})
+    </insert>
+
+</mapper>
+  

@@ -6,16 +6,24 @@ public class BoardVO {
 	private String board_title;
 	private String board_content;
 	private String board_date;
+	private String file;
 	
 	public BoardVO() {
 	}
 	
-	public BoardVO(int board_id, String board_writer, String board_title, String board_content, String board_date) {
+	public BoardVO(String board_writer, String board_title, String board_content) {
+		this.board_writer = board_writer;
+		this.board_title = board_title;
+		this.board_content = board_content;
+	}
+	
+	public BoardVO(int board_id, String board_writer, String board_title, String board_content, String board_date, String file) {
 		this.board_id = board_id;
 		this.board_writer = board_writer;
 		this.board_title = board_title;
 		this.board_content = board_content;
 		this.board_date = board_date;
+		this.file = file;
 	}
 
 	public int getBoard_id() {
@@ -47,6 +55,12 @@ public class BoardVO {
 	}
 	public void setBoard_date(String board_date) {
 		this.board_date = board_date;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 }

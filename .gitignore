@@ -13,8 +13,10 @@ target/
 
 # src
 test/
-main/resources/
+META-INF/
 classes/
 log4j.xml
+jdbc.properties
+upload/
 ##web.xml
 ##spring/
