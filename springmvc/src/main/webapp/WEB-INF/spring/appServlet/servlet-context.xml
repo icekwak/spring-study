@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.study.spring.controller" />
+	<context:component-scan base-package="com.study.spring.controller, com.study.spring.api" />
 	
 	<!-- multipartResolver 파일 크기 지정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

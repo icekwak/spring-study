@@ -11,4 +11,6 @@ public interface BoardService {
 	public BoardVO detail(int id);
 
 	public void insert(BoardVO boardVO);
+	
+	public void update(BoardVO boardVO);
 }

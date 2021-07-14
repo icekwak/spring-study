@@ -45,4 +45,26 @@ public class BoardController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(Model model, int id) {
+		
+		BoardVO Updata = boardService.detail(id);
+		model.addAttribute("Updata", Updata);
+		
+		return "board/update";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(int id, String title, String content) {
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_id(id);
+		boardVO.setBoard_title(title);
+		boardVO.setBoard_content(content);
+		
+		boardService.update(boardVO);
+		
+		return "redirect:/board/detail?id=" + Integer.toString(id);
+	}
 }

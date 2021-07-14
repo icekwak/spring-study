@@ -11,5 +11,7 @@ public interface BoardDAO {
 	BoardVO detail(int id);
 
 	void insert(BoardVO baordVO);
+	
+	void update(BoardVO baordVO);
 
 }

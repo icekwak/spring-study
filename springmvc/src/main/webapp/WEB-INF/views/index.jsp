@@ -12,6 +12,15 @@
 <body>
 	<form id="board" action="/board/insert" method="GET">
 		<h3>게시판</h3>
+		<div>
+			<c:if test="${userName == null}">
+				<a href="/member/signIn">로그인</a>
+			</c:if>
+			<c:if test="${userName != null}">
+				<span>${userName}님 환영합니다.</span>
+				<a href="/member/signOut">로그아웃</a>
+			</c:if>
+		</div>
 		<table>
 			<thead>
 				<tr>
@@ -32,9 +41,18 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div>
-			<input type="submit" value="글쓰기"/>
-		</div>
+		<%-- <div id="paging">
+			<p><a href="">이전</a></p>
+			<ul>
+				<c:forEach var="num" begin="" end="">
+				<li><a href=""></a></li>
+				</c:forEach>
+			</ul>
+			<p><a href="">이전</a></p>
+		</div> --%>
+		<c:if test="${userName != null}">
+			<div><input type="submit" value="글쓰기"/></div>
+		</c:if>
 	</form>
 </body>
 </html>

@@ -38,4 +38,10 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(namespace + ".insert", boardVO);
 	}
 
+	@Override
+	public void update(BoardVO baordVO) {
+		
+		sqlSession.update(namespace + ".update", baordVO);
+	}
+
 }
