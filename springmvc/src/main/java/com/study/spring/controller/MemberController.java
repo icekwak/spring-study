@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.study.spring.entity.MemberVO;
-import com.study.spring.service.MemberService;
+import com.study.spring.service.member.MemberService;
 
 @Controller
 @RequestMapping("/member/")
@@ -52,5 +52,11 @@ public class MemberController {
 	public String signUp() {
 		
 		return "/member/signUp";
+	}
+	
+	@RequestMapping(value="signUp", method = RequestMethod.POST)
+	public String signUp(String user_id, String user_pw1, String user_pw2) {
+		
+		return "redirect:/member/signIn";
 	}
 }

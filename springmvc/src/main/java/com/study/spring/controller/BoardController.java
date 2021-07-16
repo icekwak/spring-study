@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.study.spring.entity.BoardVO;
-import com.study.spring.service.BoardService;
+import com.study.spring.service.board.BoardService;
 
 @Controller
 @RequestMapping("/board/")

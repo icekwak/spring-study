@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#IDchk_0{
+	color: green;
+	display: none;
+}
+
+#IDchk_1{
+	color: red;
+	display: none;
+}
+
+#PWchk{
+	color: red;
+}
+
+#eqPw_0{
+	color: green;
+	display: none;
+}
+
+#eqPw_1{
+	color: red;
+	display: none;
+}

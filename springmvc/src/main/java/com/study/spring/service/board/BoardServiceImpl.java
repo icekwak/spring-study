@@ -1,12 +1,13 @@
-package com.study.spring.service;
+package com.study.spring.service.board;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.study.spring.dao.BoardDAO;
+import com.study.spring.dao.board.BoardDAO;
 import com.study.spring.entity.BoardVO;
+import com.study.spring.entity.paging.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -15,9 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		
-		List<BoardVO> list = boardDAO.getList();
+		List<BoardVO> list = boardDAO.getList(cri);
 		
 		return list;
 	}
@@ -40,6 +41,14 @@ public class BoardServiceImpl implements BoardService {
 	public void update(BoardVO boardVO) {
 		
 		boardDAO.update(boardVO);
+	}
+
+	@Override
+	public int count() {
+		
+		int totalCount = boardDAO.count();
+		
+		return totalCount;
 	}
 
 }

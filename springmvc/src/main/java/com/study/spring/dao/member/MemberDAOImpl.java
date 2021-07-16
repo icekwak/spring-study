@@ -1,4 +1,4 @@
-package com.study.spring.dao;
+package com.study.spring.dao.member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,14 @@ public class MemberDAOImpl implements MemberDAO {
 		String userName = sqlSession.selectOne(namespace + ".signIn", memberVO);
 		
 		return userName;
+	}
+
+	@Override
+	public int listId(String user_id) {
+		
+		int check_id = sqlSession.selectOne(namespace + ".listId", user_id);
+		
+		return check_id;
 	}
 	
 	

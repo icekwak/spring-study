@@ -47,5 +47,10 @@
 		<filter-name>charaterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- session time out (단위: 분) -->
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
 
 </web-app>

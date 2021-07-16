@@ -41,15 +41,19 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<%-- <div id="paging">
-			<p><a href="">이전</a></p>
+		<div id="paging">
 			<ul>
-				<c:forEach var="num" begin="" end="">
-				<li><a href=""></a></li>
+				<c:if test="${pageMaker.prev}">
+					<li><a href="/?page=${pageMaker.startPage - 1}&perPageNum=${pageMaker.cri.perPageNum}">이전</a></li>
+				</c:if>
+				<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+					<li><a href="/?page=${num}&perPageNum=${pageMaker.cri.perPageNum}">${num}</a></li>
 				</c:forEach>
+				<c:if test="${pageMaker.next}">
+					<li><a href="/?page=${pageMaker.endPage + 1}&perPageNum=${pageMaker.cri.perPageNum}">다음</a></li>
+				</c:if>
 			</ul>
-			<p><a href="">이전</a></p>
-		</div> --%>
+		</div>
 		<c:if test="${userName != null}">
 			<div><input type="submit" value="글쓰기"/></div>
 		</c:if>

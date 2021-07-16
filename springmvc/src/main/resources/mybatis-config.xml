@@ -9,6 +9,7 @@
 	<typeAliases>
 		<typeAlias type="com.study.spring.entity.BoardVO" alias="BoardVO"/>
 		<typeAlias type="com.study.spring.entity.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.study.spring.entity.paging.Criteria" alias="Criteria"/>
 	</typeAliases>
 	
 </configuration>

@@ -1,4 +1,4 @@
-package com.study.spring.dao;
+package com.study.spring.dao.board;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.study.spring.entity.BoardVO;
+import com.study.spring.entity.paging.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -17,9 +18,9 @@ public class BoardDAOImpl implements BoardDAO {
 	private static final String namespace = "com.study.spring.mapper.boardMapper";
 	
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		
-		List<BoardVO> list = sqlSession.selectList(namespace + ".getList");
+		List<BoardVO> list = sqlSession.selectList(namespace + ".getList", cri);
 		
 		return list;
 	}
@@ -42,6 +43,14 @@ public class BoardDAOImpl implements BoardDAO {
 	public void update(BoardVO baordVO) {
 		
 		sqlSession.update(namespace + ".update", baordVO);
+	}
+
+	@Override
+	public int count() {
+		
+		int totalCount = sqlSession.selectOne(namespace + ".count");
+		
+		return totalCount;
 	}
 
 }

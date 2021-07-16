@@ -5,20 +5,29 @@
 
 <mapper namespace="com.study.spring.mapper.boardMapper">
 
-    <select id="getList" parameterType="int" resultType="BoardVO">
+	<!-- 게시물 목록 -->
+    <select id="getList" parameterType="Criteria" resultType="BoardVO">
     	SELECT * FROM board
-    	limit 10 <!-- #{pageStart}, #{perPageNum} -->
+    	limit #{pageStart}, #{perPageNum}
     </select>
     
+    <!-- 게시물 총 개수 -->
+    <select id="count" resultType="int">
+    	SELECT COUNT(board_id) FROM board
+    </select>
+    
+    <!-- 게시물 상세보기 -->
     <select id="detail" parameterType="int" resultType="BoardVO">
     	SELECT * FROM board WHERE board_id = #{id}
     </select>
     
+    <!-- 게시물 등록 -->
     <insert id="insert" parameterType="BoardVO">
     	INSERT INTO board(board_title, board_writer, board_content)
     	VALUES (#{board_title}, #{board_writer}, #{board_content})
     </insert>
     
+    <!-- 게시물 수정 -->
     <update id="update" parameterType="BoardVO">
     	UPDATE board
     	SET board_title = #{board_title},

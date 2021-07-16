@@ -5,15 +5,24 @@
 
 <mapper namespace="com.study.spring.mapper.memberMapper">
 
+	<!-- 로그인 -->
     <select id="signIn" parameterType="MemberVO" resultType="String">
     	SELECT user_id
     	FROM member
     	WHERE user_id = #{user_id} AND user_pw = #{user_pw}
     </select>
     
+    <!-- 회원가입 -->
     <insert id="signUp" parameterType="MemberVO">
     	INSERT INTO member(user_id, user_pw)
     	VALUES(#{user_id}, #{user_pw})
     </insert>
+    
+    <!-- id 목록 -->
+    <select id="listId" parameterType="String" resultType="int">
+    	SELECT COUNT(*)
+    	FROM member
+    	WHERE user_id = #{user_id}
+    </select>
 
 </mapper>
