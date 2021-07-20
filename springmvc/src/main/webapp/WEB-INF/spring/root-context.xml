@@ -31,9 +31,29 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>   
     </bean>
+    
+    <!-- email 인증 관련 (관리자 계정 설정) -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<property name="host" value="${mail.host}"/>
+    	<property name="port" value="${mail.port}"/>
+    	<property name="username" value="${mail.username}"/>
+    	<property name="password" value="${mail.password}"/>
+    	<property name="javaMailProperties">
+    		<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+    	</property>
+    </bean>
+    
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    	<property name="validationMessageSource" ref="messageSource" />
+	</bean>
 	
-	<!-- DB 정보 파일 -->
-	<context:property-placeholder location="classpath:/jdbc.properties" />
+	<!-- DB 정보, mail 정보 -->
+	<context:property-placeholder location="classpath:/config.properties" />
 	
 	<context:component-scan base-package="com.study.spring.service, com.study.spring.dao" />
 	

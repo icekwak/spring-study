@@ -18,7 +18,7 @@ import com.study.spring.service.board.BoardService;
 public class HomeController {
 	
 	@Autowired
-	private BoardService boardService;
+	private BoardService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, @ModelAttribute Criteria cri) { 
@@ -27,8 +27,8 @@ public class HomeController {
 		
 		//Criteria cri = new Criteria(page, perPageNum);	// default (현재 페이지 번호 = 1, 한 페이지에 보여줄 게시글 수 = 10)
 		
-		List<BoardVO> list = boardService.getList(cri);
-		int totalCount = boardService.count();
+		List<BoardVO> list = service.getList(cri);
+		int totalCount = service.count();
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);

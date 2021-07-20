@@ -17,6 +17,7 @@ META-INF/
 classes/
 log4j.xml
 jdbc.properties
+config.properties
 upload/
 ##web.xml
 ##spring/

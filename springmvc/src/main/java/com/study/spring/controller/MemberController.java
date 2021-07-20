@@ -20,6 +20,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "signIn", method = RequestMethod.GET)
 	public String signIn() {
+		
 		return "/member/signIn";
 	}
 	
@@ -59,4 +60,5 @@ public class MemberController {
 		
 		return "redirect:/member/signIn";
 	}
+
 }

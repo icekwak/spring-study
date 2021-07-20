@@ -1,25 +1,29 @@
 @charset "UTF-8";
 
-#IDchk_0{
-	color: green;
-	display: none;
+*{
+	margin: 0;
+	padding: 0;
 }
 
-#IDchk_1{
-	color: red;
-	display: none;
+#wrap{
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	background-color: #fbfbfb;
+	margin-top: 50px;
 }
 
-#PWchk{
-	color: red;
+#sign-up-form > div {
+	width: 500px;
+	height: 150px;
 }
 
-#eqPw_0{
-	color: green;
-	display: none;
+#btn{
+	width: 500px;
+	height: 50px;
 }
 
-#eqPw_1{
-	color: red;
-	display: none;
+#name-text, #email-chk-text, #password-chk-text{
+	color: gray;
 }
+
