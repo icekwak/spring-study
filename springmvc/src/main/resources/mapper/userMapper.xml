@@ -27,4 +27,41 @@
 		WHERE email = #{email}
 	</select>
 	
+	<!-- auth insert -->
+	<insert id="insertAuth" parameterType="AuthVO">
+		INSERT INTO auth(email, number)
+		VALUES(#{email}, #{number})
+	</insert>
+	
+	<!-- auth checking -->
+	<select id="checkAuth" parameterType="AuthVO" resultType="int">
+		SELECT COUNT(*)
+		FROM auth
+		WHERE email = #{email} AND number = #{number}
+	</select>
+	
+	<!-- auth number update -->
+	<update id="updateAuth" parameterType="AuthVO">
+		UPDATE auth
+		SET number = #{number}, time = CURRENT_TIMESTAMP
+		WHERE email = #{email}
+	</update>
+	
+	<!-- auth num check -->
+	<select id="numCheck" parameterType="AuthVO" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM auth
+		WHERE email = #{email} AND number = #{number} AND ABS(TIMESTAMPDIFF(MINUTE, NOW(), time)) < 5
+		]]>
+	</select>
+	
+	<!-- auth delete -->
+	<delete id="deleteAuth" parameterType="AuthVO">
+		<![CDATA[
+		DELETE FROM auth
+		WHERE email = #{email} AND number = #{number}  
+		]]>
+	</delete>
+	
 </mapper>

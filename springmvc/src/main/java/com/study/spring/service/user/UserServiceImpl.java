@@ -1,18 +1,27 @@
 package com.study.spring.service.user;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.study.spring.dao.user.UserDAO;
+import com.study.spring.entity.AuthVO;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO dao;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	private Pattern pattern;
 	
@@ -34,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int emailCheck(String email) {
 		
-		String regex = "^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$";
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 		pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		
@@ -64,6 +73,66 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return -1; // 유효성 검사 불통
+	}
+
+	@Override
+	public void emailSend(String email) {
+		
+		Random rand = new Random();
+		int num = rand.nextInt(900000) + 100000; // 100000 ~ 999999
+		
+		String setfrom = "sw20175105@g-mail.hallym.ac.kr";
+		String tomail = email;
+		String title = "회원가입 인증 이메일 입니다.";
+		String content = 
+				System.getProperty("line.separator") +
+				"인증번호는 " + num + " 입니다." +
+				System.getProperty("line.separator") +
+				"인증번호를 홈페이지에 입력해주세요.";
+		
+		try {
+			// 메일 발송
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setFrom(setfrom);		// 보내는사람 생략하면 정상작동을 안함
+            messageHelper.setTo(tomail);		// 받는사람 이메일
+            messageHelper.setSubject(title);	// 메일제목은 생략이 가능하다
+            messageHelper.setText(content);		// 메일 내용
+            
+            mailSender.send(message);
+            
+            // DB 저장
+            AuthVO authVO = new AuthVO(email, num);
+            int check = dao.checkAuth(authVO);
+            
+            if(check == 0)
+            	dao.insertAuth(authVO);
+            else
+            	dao.updateAuth(authVO);
+            
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		// DB에 인증번호 저장 구현
+		
+	}
+
+	@Override
+	public int numCheck(AuthVO authVO) {
+		
+		int c = dao.numCheck(authVO);
+		
+		return c;
+	}
+
+	@Override
+	public void deleteAuth(AuthVO authVO) throws Exception {
+		
+		dao.deleteAuth(authVO);
+		
 	}
 
 }

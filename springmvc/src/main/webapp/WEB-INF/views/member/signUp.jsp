@@ -9,7 +9,7 @@
 	<title>Sign Up</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/signUp.css?ver=1.2"/>
 	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/resources/js/signUp.js"></script>
+	<script type="text/javascript" src="/resources/js/signUp.js?ver=1.2"></script>
 </head>
 <body>
 	<div id="wrap">

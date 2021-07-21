@@ -97,9 +97,9 @@
 	
 	// 이메일 유효성 및 중복 검사 및
 	$("#btn-email-send").on("click", function(){
-		var email = $("email").val();
+		var email = $("#email").val();
 		
-		if(email != null){
+		if(email != ""){
 			$.ajax({
 				type: "POST",
 				url: "/user/api/emailCheck",
@@ -127,6 +127,35 @@
 		}else{
 			$("#email-chk-text").text("이메일 형식을 제대로 적어주세요.");
 			$("#email-chk-text").css("color", "gray");
+		}
+		
+	});
+	
+	// 인증 체크
+	$("#btn-email-chk").on("click", function(){
+		var num = $("#email-chk").val();
+		var email = $("#email").val();
+		
+		if(num != "" && email != ""){
+			$.ajax({
+				type: "POST",
+				url: "/user/api/numCheck",
+				data: {"email" : email, "num" : num},
+				dataType: "json",
+				success: function(chk){
+					if(chk === 1){
+						$("#email-chk-text").text("인증성공");
+						$("#email-chk-text").css("color", "green");
+					}
+					else{
+						$("#email-chk-text").text("시간초과 또는 인증실패");
+						$("#email-chk-text").css("color", "red");
+					}
+				},
+				error: function(e){
+					alert("[numCheck error]\n" + e);
+				}
+			});
 		}
 		
 	});
