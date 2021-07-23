@@ -37,7 +37,7 @@
 	<select id="checkAuth" parameterType="AuthVO" resultType="int">
 		SELECT COUNT(*)
 		FROM auth
-		WHERE email = #{email} AND number = #{number}
+		WHERE email = #{email}
 	</select>
 	
 	<!-- auth number update -->
